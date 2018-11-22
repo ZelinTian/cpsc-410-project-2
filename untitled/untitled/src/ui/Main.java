@@ -3,10 +3,7 @@ package ui;
 import ast.PROGRAM;
 import libs.Tokenizer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,36 +31,58 @@ public class Main {
 
     }
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+        Path path = Paths.get("");
         listFileName(folder);
         String fileName = "";
+        List<String> classNames = new ArrayList<>();
 
 //            System.out.println("1");
             for (String name : nameList) {
                 try {
-                    Path a = Paths.get("src/ast/", name);
-                    content = new String(Files.readAllBytes(a), StandardCharsets.UTF_8);
+                    path= Paths.get("src/ast/", name);
+                    content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
                     String className = name.substring(0, name.indexOf("."));
                     fileName = className;
+                    classNames.add(fileName);
                 } catch(Exception e){
 //                    System.out.println("a is wrong");
                     try {
-                        Path b = Paths.get("src/libs/", name);
-                        content = new String(Files.readAllBytes(b), StandardCharsets.UTF_8);
+                        path = Paths.get("src/libs/", name);
+                        content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
                         String className = name.substring(0, name.indexOf("."));
                         fileName = className;
+                        classNames.add(fileName);
+
                     }catch (Exception v) {
 //                        System.out.println("c is wrong");
                         try {
-                            Path c = Paths.get("src/ui/", name);
-                            content = new String(Files.readAllBytes(c), StandardCharsets.UTF_8);
+                            path = Paths.get("src/ui/", name);
+                            content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
                             String className = name.substring(0, name.indexOf("."));
                             fileName = className;
+                            classNames.add(fileName);
                         } catch (Exception k) {
 //                            System.out.println("b is wrong");
                         }
                     }
                 }
-                
+//                System.out.println(fileName);
+                BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(path)));
+                try {
+                    String line = reader.readLine();
+                    while (line != null){
+                        if (!line.contains("//")) {
+                            for (String sub : classNames){
+                                if (line.contains(sub)){
+                                    System.out.println(fileName + " ->" + sub);
+                                }
+                            }
+                        }
+                        line = reader.readLine();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
 
