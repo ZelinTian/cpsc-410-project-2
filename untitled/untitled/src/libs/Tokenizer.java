@@ -20,8 +20,7 @@ public class Tokenizer {
     private Tokenizer(String filename, List<String> literalsList){
         literals = literalsList;
         try {
-            Path a =             Paths.get("src/ast/",filename);
-            program = new String(Files.readAllBytes(a), StandardCharsets.UTF_8);
+            program = new String(Files.readAllBytes(Paths.get(filename)), StandardCharsets.UTF_8);
         } catch (IOException e) {
             System.out.println("Didn't find file");
             System.exit(0);
