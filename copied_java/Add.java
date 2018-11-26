@@ -5,6 +5,8 @@ package copied_java;
  */
 public class Add {
     public int addInt (int a, int b){
+        Log log = new Log();
+        log.log();
         return a + b;
     }
 }

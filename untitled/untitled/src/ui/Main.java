@@ -138,6 +138,7 @@ public class Main {
             }
             int last_i= valide_path.split("/").length - 1;
             String current_class = valide_path.split("/")[last_i];
+
             current_class = current_class.substring(0,current_class.indexOf("."));
             try {
                 String line = reader.readLine();
@@ -175,9 +176,9 @@ public class Main {
         for (String valide_path: valide_pathes){
             int last_i= valide_path.split("/").length - 1;
             String current_class = valide_path.split("/")[last_i];
-//            System.out.println("hihih: " + current_class);
+            System.out.println("hihih: " + current_class);
             String dest_path = copied_java_folder.getPath() + "/"+ current_class;
-//            System.out.println("dest path: " + dest_path);
+            System.out.println("dest path: " + dest_path);
             BufferedReader reader = null;
             BufferedWriter writer = null;
             File src_file = new File(valide_path);

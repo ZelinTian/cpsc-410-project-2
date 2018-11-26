@@ -5,6 +5,7 @@ package ast;
  */
 public class Add {
     public int addInt (int a, int b){
-        return a + b;
+        int result = a + b;
+        return result;
     }
 }

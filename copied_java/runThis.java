@@ -6,11 +6,13 @@ package copied_java;
  */
 public class runThis {
     public static void runThis() {
+        Log log = new Log();
+        log.log();
         int a = 2;
         int b = 3;
         Add c = new Add();
         Sub d = new Sub();
-        System.out.println(c.addInt(a,b));
+//        System.out.println(c.addInt(a,b));
         System.out.println(d.subInt(b,a));
     }
     public static void main(String[] args){
