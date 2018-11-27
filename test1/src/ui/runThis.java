@@ -16,6 +16,7 @@ public class runThis {
         System.out.println(d.subInt(b,a));
     }
     public static void main(String[] args){
+        System.out.println("test app go go go!!");
         runThis();
     }
 }

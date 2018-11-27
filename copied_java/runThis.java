@@ -12,10 +12,13 @@ public class runThis {
         int b = 3;
         Add c = new Add();
         Sub d = new Sub();
-//        System.out.println(c.addInt(a,b));
+        System.out.println(c.addInt(a,b));
         System.out.println(d.subInt(b,a));
     }
     public static void main(String[] args){
+        Log log = new Log();
+        log.log();
+        System.out.println("test app go go go!!");
         runThis();
     }
 }

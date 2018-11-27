@@ -7,6 +7,7 @@ public class Add {
     public int addInt (int a, int b){
         Log log = new Log();
         log.log();
-        return a + b;
+        int result = a + b;
+        return result;
     }
 }

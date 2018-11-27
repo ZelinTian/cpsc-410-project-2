@@ -9,8 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Pattern;
+import copied_java.Log;
 
 import static ui.Run.run_copied_java;
+
 
 public class Main {
     public static Map<String,Object> symbolTable = new HashMap<>();
@@ -76,6 +79,13 @@ public class Main {
             }
         }
 
+    }
+
+    private static boolean is_function_start(String line){
+        boolean isMatch = (Pattern.matches(".*public.*", line) ||
+                Pattern.matches(".*private.*", line)) && Pattern.matches("(.*)",line) &&
+                Pattern.matches(".*\\(.*",line) && Pattern.matches(".*\\{.*",line);
+        return isMatch;
     }
     private static List<String> get_dependency() {
         String fileName = "";
@@ -196,10 +206,10 @@ public class Main {
                     if (!currentLine.contains("import") && !currentLine.contains("package")) {
                         writer.write(currentLine + System.getProperty("line.separator"));
                     }
-//                    if (currentLine.contains("public static void runThis() {")){
-//                        writer.write("        Log log = new Log();\n" +
-//                                "        log.log();"+ System.getProperty("line.separator"));
-//                    }
+                    if (is_function_start(currentLine)){
+                        writer.write("        Log log = new Log();\n" +
+                                "        log.log();"+ System.getProperty("line.separator"));
+                    }
                     currentLine = reader.readLine();
                 }
                 writer.close();
@@ -272,6 +282,9 @@ public class Main {
             e.printStackTrace();
         }
         run_copied_java();
+        Log log  = new Log();
+        List<String> call_relation =  log.get_call_relation();
+        System.out.println("call_relation: " + call_relation);
 
 //        try {
 //            copyFolder(folder,copied_java_folder);
