@@ -73,7 +73,6 @@ public class Log {
         } catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     public List<String> get_call_relation(){
@@ -83,9 +82,9 @@ public class Log {
             reader = new BufferedReader(new FileReader(String.valueOf(read_file)));
             String currentLine = reader.readLine();
             while(currentLine != null && currentLine != "") {
-                if (!class_call_relation.contains(currentLine.trim())){
-                    class_call_relation.add(currentLine.replaceAll("\\s+",""));
-                }
+//                if (!class_call_relation.contains(currentLine.trim())){
+                class_call_relation.add(currentLine.replaceAll("\\s+",""));
+//                }
                 currentLine = reader.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -95,5 +94,4 @@ public class Log {
         }
         return class_call_relation;
     }
-
 }

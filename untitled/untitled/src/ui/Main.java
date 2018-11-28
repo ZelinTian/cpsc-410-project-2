@@ -275,6 +275,23 @@ public class Main {
         listFileName(folder);
         List<String> classDependecies = get_dependency();
         System.out.println("classDependecies: " + classDependecies);
+        File destFile = new File("/Users/rex/Desktop/cpsc-410-project-2/copied_java/classDependecies.txt");
+        BufferedWriter writer = null;
+        try {
+
+            writer = new BufferedWriter(new FileWriter(destFile));
+            for (String classDependecy : classDependecies){
+                if (classDependecy == classDependecies.get(classDependecies.size()-1)){
+                    writer.write(classDependecy );
+                } else {
+                    writer.write(classDependecy + ",");
+                }
+            }
+            writer.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
         ////////------------------------------------------
         try {
             update_create_copy();
